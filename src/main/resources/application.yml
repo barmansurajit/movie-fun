@@ -5,10 +5,14 @@ spring:
 
   datasource:
     url: jdbc:mysql://localhost:3306/movies?useSSL=false
-    username: root
+    username: tracker
   mvc.view:
     prefix: /WEB-INF/
     suffix: .jsp
+
+rabbitmq:
+  queue: my-rabbit-queue
+
 
 logging.level:
   root: WARN
