@@ -44,4 +44,14 @@ public class AlbumsBean {
         cq.select(cq.from(Album.class));
         return entityManager.createQuery(cq).getResultList();
     }
+
+    @Transactional
+    public void deleteAlbum(Album album) {
+        entityManager.remove(entityManager.contains(album) ? album : entityManager.merge(album));
+    }
+
+    @Transactional
+    public void updateAlbum(Album album) {
+        entityManager.merge(album);
+    }
 }

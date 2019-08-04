@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Objects;
 
 public class ServiceCredentials {
+
     private final String vcapServices;
 
     public ServiceCredentials(String vcapServices) {
@@ -33,7 +33,7 @@ public class ServiceCredentials {
             }
         }
 
-        throw new IllegalStateException("No " + serviceName + " found in VCAP_SERVICES");
+        throw new IllegalStateException("No "+ serviceName + " found in VCAP_SERVICES");
     }
 
     public String getCredentials(String serviceName, String serviceType) {
@@ -66,5 +66,4 @@ public class ServiceCredentials {
         throw new IllegalStateException("No " + serviceName + " found in VCAP_SERVICES");
 
     }
-
 }

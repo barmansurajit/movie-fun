@@ -16,6 +16,8 @@
  */
 package org.superbiz.moviefun.movies;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +31,8 @@ import java.util.List;
 @Repository
 public class MoviesBean {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -38,17 +42,19 @@ public class MoviesBean {
 
     @Transactional
     public void addMovie(Movie movie) {
+        logger.debug("Creating movie with title {}, and year {}", movie.getTitle(), movie.getYear());
+
         entityManager.persist(movie);
     }
 
     @Transactional
-    public void editMovie(Movie movie) {
+    public void updateMovie(Movie movie) {
         entityManager.merge(movie);
     }
 
     @Transactional
     public void deleteMovie(Movie movie) {
-        entityManager.remove(movie);
+        entityManager.remove(entityManager.contains(movie)? movie : entityManager.merge(movie));
     }
 
     @Transactional

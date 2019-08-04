@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class FileStore implements BlobStore {
+
     private final Tika tika = new Tika();
 
 
@@ -36,9 +37,9 @@ public class FileStore implements BlobStore {
         }
 
         return Optional.of(new Blob(
-                name,
-                new FileInputStream(file),
-                tika.detect(file)
+            name,
+            new FileInputStream(file),
+            tika.detect(file)
         ));
     }
 
@@ -47,3 +48,4 @@ public class FileStore implements BlobStore {
 
     }
 }
+
