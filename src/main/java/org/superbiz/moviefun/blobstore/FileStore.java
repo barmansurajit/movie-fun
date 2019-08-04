@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
 
-
 public class FileStore implements BlobStore {
 
     private final Tika tika = new Tika();
@@ -49,3 +48,4 @@ public class FileStore implements BlobStore {
 
     }
 }
+
